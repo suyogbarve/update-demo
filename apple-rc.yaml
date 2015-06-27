@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: update-demo-apple
+spec:
+  replicas: 4
+  selector:
+    name: update-demo
+    version: apple
+  template:
+    metadata:
+      labels:
+        name: update-demo
+        version: apple
+    spec:
+      containers:
+      - image: gcr.io/google_containers/update-demo:apple
+        name: update-demo
+        ports:
+        - containerPort: 80
+          protocol: TCP
